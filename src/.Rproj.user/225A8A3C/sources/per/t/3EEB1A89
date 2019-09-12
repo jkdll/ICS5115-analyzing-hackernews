@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1560703425133.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "678613767",
+    "id" : "3EEB1A89",
+    "lastKnownWriteTime" : 1560800630,
+    "last_content_update" : 1560800630695,
+    "path" : "~/uom/ds-statistics/src/analysis_descriptive.R",
+    "project_path" : "analysis_descriptive.R",
+    "properties" : {
+        "cursorPosition" : "52,0",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

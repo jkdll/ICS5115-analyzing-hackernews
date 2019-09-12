@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1560887402176.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3209092481",
+    "id" : "433C1E17",
+    "lastKnownWriteTime" : 1560810731,
+    "last_content_update" : 1560810731,
+    "path" : "~/uom/ds-statistics/src/analysis_topic_detection.R",
+    "project_path" : "analysis_topic_detection.R",
+    "properties" : {
+        "cursorPosition" : "182,29",
+        "scrollLine" : "165"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

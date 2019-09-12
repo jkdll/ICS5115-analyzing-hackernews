@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1560818710210.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2748759189",
+    "id" : "38BE1412",
+    "lastKnownWriteTime" : 1560881103,
+    "last_content_update" : 1560881103,
+    "path" : "~/uom/ds-statistics/src/analysis_topic_annotation.R",
+    "project_path" : "analysis_topic_annotation.R",
+    "properties" : {
+        "cursorPosition" : "24,72",
+        "scrollLine" : "14"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

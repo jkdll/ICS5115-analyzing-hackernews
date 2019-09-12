@@ -1,0 +1,239 @@
+library(topicmodels)
+library(tm)
+library(wordcloud)
+library(doParallel)
+library(foreach)
+library(stringr)
+library(dplyr)
+
+# Load Data In
+df <- read.csv(file="./data-clean/hackernews_board_content.csv", header=TRUE, sep=",")
+df2 <- subset(df, as.Date(as.character(df$published_date),format='%Y-%m-%d') >= as.Date(as.character('2019-04-01'),format='%Y-%m-%d') 
+             & as.Date(as.character(df$published_date),format='%Y-%m-%d') <= as.Date(as.character('2019-05-31'),format='%Y-%m-%d')
+             & as.numeric(df$rank) <= 3)
+# Add some Metadata Columns
+df$story_doc <- paste0(str_extract(df$link_thread,'([0-9]+)'),'.txt')
+df$story_id <- str_extract(df$link_thread,'([0-9]+)')
+# Do some extra cleaning
+df$story <- sub("\\([^\\)]*\\)*", " ", df$story)
+df$story <- gsub("[[:punct:]]", "", df$story, ) 
+df$story <- sub("[video]","",df$story)
+# Create story_id column and text column
+df$doc_id <- df$story_id
+df$text <- with(df,paste0(df$story,df$story_text))
+df <- df %>% select(doc_id, story, text)
+
+
+# Create Documents Corpus from Story Column
+documents <- Corpus(DataframeSource(df))
+# Remove Punctuation Marks, Transform to Lower Case and Strip Digits
+documents <- tm_map(documents, removePunctuation)
+documents <- tm_map(documents, removeNumbers)
+documents <- tm_map(documents,tolower)
+# Remove Stopwords - We test with two different stopword lists
+documents <- tm_map(documents, removeWords, stopwords("en"))
+documents <- tm_map(documents, removeWords, stopwords("SMART"))
+# Strip Whitespace (probably unnecessary)
+documents <- tm_map(documents, stripWhitespace)
+# We remove some additional stopwords before and after stemming
+documents <- tm_map(documents, removeWords, c('NA', 'show','ask','dont','pdf','make','year','app'
+                                              ,'application','learn','work','user','shw','develop'
+                                              ,'computer','startup','web','build','game','code','video','time'
+                                              ,"system","software","design","tool","turn","tech","start","report"
+                                              ,"run","project","hacker","thing","find","program","programming"
+                                              ,"computer","internet","book","language", "free", "launch"
+                                              , "write", "news","release","source","reveal","team","site","service"
+                                              ,"access","create","custom","built","implement","store","generate"
+                                              ,"made","collect","released","development","engineering","making","page"
+                                              ,"job","alternative","plan","change","hour","max","native","remove","open"
+                                              ,"data","day","end","link","hack","file","network","text","line"
+                                              ,"back","high","test","hire","server","effect","share","small","big"
+                                              ,"hit","research","case","worker","record","person","what","who","when","framework"
+                                              ,"online","week","search","wrong","account","website","rule","hard"
+                                              ,"library","simple","live"))
+# Stem Documents - tested with and without (better without)
+documents <- tm_map(documents,stemDocument)
+documents <- tm_map(documents, removeWords, c('NA', 'show','ask','dont','pdf','make','year','app'
+                                              ,'application','learn','work','user','shw','develop'
+                                              ,'computer','startup','web','build','game','code','video','time'
+                                              ,"system","software","design","tool","turn","tech","start","report"
+                                              ,"run","project","hacker","thing","find","program","programming"
+                                              ,"computer","internet","book","language", "free", "launch"
+                                              , "write", "news","release","source","reveal","team","site","service"
+                                              ,"access","create","custom","built","implement","store","generate"
+                                              ,"made","collect","released","development","engineering","making","page"
+                                              ,"job","alternative","plan","change","hour","max","native","remove","open"
+                                              ,"data","day","end","link","hack","file","network","text","line"
+                                              ,"back","high","test","hire","server","effect","share","small","big"
+                                              ,"hit","research","case","worker","record","person","what","who","when","framework"
+                                              ,"online","week","search","wrong","account","website","rule","hard"
+                                              ,"library","simple","live"))
+
+# Build Document-term matrix and strip parse terms, story column is fine without stripping
+document_matrix <- DocumentTermMatrix(documents)
+document_matrix_st <- removeSparseTerms(document_matrix, 0.999)
+#document_matrix_st <- document_matrix
+
+# Find all documents with 0 words and remove them (probably unnecessary but left as a precaution)
+rowTotals <- apply(document_matrix_st , 1, sum) 
+document_matrix_st <- document_matrix_st[rowTotals> 0, ]
+
+# Find Most Frequent Terms and create wordcloud
+findFreqTerms(document_matrix_st, 100)
+freq = data.frame(sort(colSums(as.matrix(document_matrix_st)), decreasing=TRUE))
+viz_wordcloud <- wordcloud(rownames(freq), freq[,1], max.words=200, colors=brewer.pal(3, "Dark2"))
+
+# Now time to perform LDA - We set some parameters
+# Burnin
+burnin <-200
+# Iterations
+iter<-700
+# Random Starts
+nstart <-5
+# Set cconstant seeds to random numbers
+seed <- list(572986,192031,547157,214140,743415)
+# Return Result with Highest Probability
+best <-TRUE
+# We want to select the ideal k, so we will iterate with different values
+min_k <-1
+max_k <- 120
+
+# Set up Parallel backend with n-1 processors so as not to overload the host machine
+cores=detectCores()
+cl <- makeCluster(cores[1]-1)
+registerDoParallel(cl)
+
+# LDA to be run in parallel
+parrallelLDA <- foreach(i=min_k:max_k, .packages=(c('topicmodels','tm'))) %dopar% {
+  result <- topicmodels::LDA(document_matrix_st,i,method='Gibbs', control=list(nstart=nstart, burnin = burnin, seed = seed, iter = iter, best=best))
+  return(result)  
+}
+# Teardown the cluster when we are done
+stopCluster(cl)
+# Calculate the loglikelihood
+# Beacause the loop takes VERY long to run, we sometimes ran different batches of k-estimation
+# For example in one batch we estimated 1< k >50, 50 < k > 100, 100 < k > 150 etc.
+# Each batch of 50 took approximately 6 hours to run, so this process took around 20 hours (this is excluding experimentation!)
+# This required some manually changing the below code to union dataframes and get a final visualisation to find the ideal k.
+# The code below is used to switch around the dataframes and perform a union
+# parrallelLDA.logLik2 <- as.data.frame(as.matrix(lapply(parrallelLDA, logLik)))
+# temp.loglik <- parrallelLDA.logLik2
+# rownames(temp.loglik) <- as.numeric(rownames(temp.loglik))+99
+# temp2.loglik <- parrallelLDA.logLik
+# final.loglik <- rbind(temp2.loglik,temp.loglik)
+# parrallelLDA.logLik.df <- data.frame(topics=c(min_k:max_k), LL=as.numeric(as.matrix(final.loglik)))
+
+parrallelLDA.logLik <- as.data.frame(as.matrix(lapply(parrallelLDA, logLik)))
+parrallelLDA.logLik.df <- data.frame(topics=c(min_k:max_k), LL=as.numeric(as.matrix(parrallelLDA.logLik)))
+
+# Get Ideal k (Maximum Log Likelhood)
+ideal_k <- parrallelLDA.logLik.df[which.max(parrallelLDA.logLik.df$LL),]
+
+library(ggplot2)
+library(ggthemes)
+library(scales)
+library(gridExtra)
+library(grid)
+
+plot_ideal_k <- ggplot(parrallelLDA.logLik.df, aes(x=topics, y=LL/1000)) + 
+  geom_line(color="darkred", size=2) + 
+  theme_economist(base_family="sans") +
+  geom_vline(xintercept = ideal_k$topics[1], linetype = "dashed", color = "darkblue", size = 1) +
+  labs(title="LDA: Selection of k (Topics)", x="Number of Topics", y="Log Likelihood (K)") 
+ggsave('./viz/topic_model_01_idealk.png', plot = plot_ideal_k, dpi = 300, scale = 1)
+
+# Compute Model with ideal K
+lda_model <- LDA(document_matrix_st,ideal_k$topics[1],method='Gibbs', control=list(nstart=nstart, seed = seed, burnin = burnin, iter = iter, best=best))
+lda_model.topics <- topics(lda_model,1)
+lda_model.terms <- as.data.frame(terms(lda_model,10), stringsAsFactors = FALSE)
+
+storytopics.df <- as.data.frame(lda_model.topics)
+storytopics.df <- transmute(storytopics.df, story_id = rownames(storytopics.df), story_topic = lda_model.topics)
+# Read Back initial dataframe to join topics to data
+df_init <- read.csv(file="./data-clean/hackernews_board_content.csv", header=TRUE, sep=",")
+# Create story ID and drop text, we don't need text for what we're doing
+df_init$story_id <- str_extract(df_init$link_thread,'([0-9]+)')
+df_init <- subset(df_init, select = -c(story_text))
+
+df_final <- dplyr::inner_join(df_init, storytopics.df, by = "story_id")
+df_final$story_id <- as.numeric(df_final$story_id)
+
+topic_terms <- tidyr::gather(lda_model.terms, Topic)
+topic_terms <- cbind(topic_terms, Rank = rep(1:10))
+top_terms <- dplyr::filter(topic_terms, Rank < 6)
+top_terms <- dplyr::mutate(top_terms, Topic = stringr::word(Topic, 2))
+top_terms$Topic <- as.numeric(top_terms$Topic)
+topic_labels <- data.frame()
+for (i in 1:ideal_k$topics[1]){
+  z <- dplyr::filter(top_terms, Topic == i)
+  l <- as.data.frame(paste(z[1,2], z[2,2], z[3,2], z[4,2], z[5,2], sep = " " ), stringsAsFactors = FALSE)
+  topic_labels <- rbind(topic_labels, l)
+}
+
+colnames(topic_labels) <- c("Label")
+# Topics and their labels
+# topic_labels
+write.csv(topic_labels,"./data-results-topicmodel/topic-labels.csv", row.names = TRUE)
+
+topic_probs <- as.data.frame(lda_model@gamma) 
+topic_covar <- lda_model@alpha 
+topic_dist <- lda_model@beta
+
+# Get Topic Probabilities per Document
+perdoc_topic_probs <- as.data.frame(topicmodels::posterior(lda_model)$topics)
+# Start Building Covariance Matrix
+df_covar <- as.data.frame(row.names(perdoc_topic_probs), stringsAsFactors = FALSE)
+colnames(df_covar) <- c("story_id")
+df_covar$story_id <- as.numeric(df_covar$story_id)
+# Bind Coveriance Matrix to Posterior Probabilities
+covar_matrix <- cbind(df_covar, perdoc_topic_probs)
+# Join to Final Dataframe to get Metadata
+covar_matrix <- dplyr::left_join(covar_matrix, df_final, by = "story_id")
+perdoc_topic_probs.mean.by <- by(covar_matrix[, 1:ideal_k$topics[1]+1], covar_matrix$story_id, colMeans)
+perdoc_topic_probs.mean <- do.call("rbind", perdoc_topic_probs.mean.by)
+write.csv(covar_matrix,"./data-results-topicmodel/topic-document-matrix.csv", row.names = TRUE)
+
+# Correlation Plot for all articles (Topics 1 through 50)
+library(corrplot)
+c <- cor(perdoc_topic_probs.mean)
+# Full matrix - this is way too big to display
+# corrplot(c, method = "shade", order="hclust", is.corr = TRUE)
+# So instead we divide them
+corrplot(c[1:57,1:57]
+         , method = "shade"
+         , order="hclust"
+         , is.corr = TRUE
+         , cl.ratio = 0.2
+         , cl.align = "r"
+         , tl.cex = 0.7
+         , col = brewer.pal(n = 8, name = "BrBG"))
+dev.copy(png,'viz/topic_model_03_allarticles_1_57_LARGE.png', width=1800, height=1800)
+dev.off()
+dev.copy(png,'viz/topic_model_03_allarticles_1_57_SMALL.png', width=700, height=700)
+dev.off()
+corrplot(c[58:114,58:114]
+         , method = "shade"
+         , order="hclust"
+         , is.corr = TRUE
+         , cl.ratio = 0.2
+         , cl.align = "r"
+         , tl.cex = 0.7
+         , col = brewer.pal(n = 8, name = "BrBG"))
+dev.copy(png,'viz/topic_model_03_allarticles_58_114_LARGE.png', width=1800, height=1800)
+dev.off()
+dev.copy(png,'viz/topic_model_03_allarticles_58_114_SMALL.png', width=700, height=700)
+dev.off()
+corrplot(c
+         , method = "shade"
+         , order="hclust"
+         , is.corr = TRUE
+         , cl.ratio = 0.2
+         , cl.align = "r"
+         , tl.cex = 0.2
+         , col = brewer.pal(n = 8, name = "BrBG"))
+dev.copy(png,'viz/topic_model_03_allarticles_full_LARGE.png', width=1800, height=1800)
+dev.off()
+dev.copy(png,'viz/topic_model_03_allarticles_full_SMALL.png', width=700, height=700)
+dev.off()
+
+

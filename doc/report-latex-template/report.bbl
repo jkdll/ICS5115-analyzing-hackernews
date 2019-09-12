@@ -1,0 +1,83 @@
+\begin{thebibliography}{10}
+
+\bibitem{hn:announcement}
+P.~Graham, ``Introducing startup news.''
+  https://news.ycombinator.com/announcingnews.html, Feb. 2007.
+
+\bibitem{hn:guidelines}
+Ycombinator, ``Hacker news guidelines.''
+  https://news.ycombinator.com/newsguidelines.html.
+
+\bibitem{lda:generative}
+A.~Y. Ng and M.~I. Jordan, ``On discriminative vs. generative classifiers: A
+  comparison of logistic regression and naive bayes,'' in {\em Advances in
+  neural information processing systems}, pp.~841--848, 2002.
+
+\bibitem{lda:bgsm}
+M.~S. J.K.~Pritchard and P.~Donnelly, ``Inference of population structure using
+  multilocus genotype data,'' {\em Genetics}, vol.~155, no.~2, pp.~945--959,
+  2000.
+
+\bibitem{lda:bengio-ng}
+A.~Y.~N. David M~Blei and M.~I. Jordan, ``Latent dirichlet allocation,'' {\em
+  Journal of machine Learning research}, vol.~3, no.~Jan, pp.~993--1022, 2003.
+
+\bibitem{lda:evaluation}
+R.~S. Hanna M~Wallach, Iain~Murray and D.~Mimno, ``Evaluation methods for topic
+  models,'' in {\em Proceedings of the 26th annual international conference on
+  machine learning}, pp.~1105--1112, ACM, 2009.
+
+\bibitem{lda:human-perplexity}
+C.~W. Jonathan~Chang, Sean~Gerrish, ``Reading tea leaves: How humans interpret
+  topic models,'' in {\em Advances in neural information processing systems},
+  pp.~288--296, 2009.
+
+\bibitem{hn:datasource}
+W.~Larsen, ``hckr news.''
+
+\bibitem{cran:boilerpiper}
+M.~Annau, {\em Package boilerpipeR}.
+\newblock R Foundation for Statistical Computing.
+
+\bibitem{cran:textmining}
+I.~Feinerer and K.~Hornik, {\em tm: Text Mining Package}, 2018.
+\newblock R package version 0.7-6.
+
+\bibitem{cran:opennlp}
+K.~Hornik, ``Cran - package opennlp.''
+
+\bibitem{test:chi}
+M.~L. McHugh, ``The chi-square test of independence,'' {\em Biochemia medica:
+  Biochemia medica}, vol.~23, no.~2, pp.~143--149, 2013.
+
+\bibitem{test:anova}
+R.~M. Heiberger and E.~Neuwirth, {\em One-Way ANOVA}, pp.~165--191.
+\newblock New York, NY: Springer New York, 2009.
+
+\bibitem{cran:topicmodels}
+B.~Grun, ``Topic models [r package topicmodels version 0.2-8].''
+
+\bibitem{cran:ggplot}
+L.~H. Hadley~Wickham, Winston~Chang, ``Create elegant data visualisations using
+  the grammar of graphics [r package ggplot2 version 3.2.0].''
+
+\bibitem{test:pearson}
+W.~Kirch, ed., {\em Pearson's Correlation Coefficient}, pp.~1090--1091.
+\newblock Dordrecht: Springer Netherlands, 2008.
+
+\bibitem{test:yates}
+F.~Yates, ``Contingency tables involving small numbers and the chi 2 test,''
+  {\em Supplement to the Journal of the Royal Statistical Society}, vol.~1,
+  no.~2, pp.~217--235, 1934.
+
+\bibitem{test:fisher}
+R.~A. Fisher, ``On the interpretation of chi 2 from contingency tables, and the
+  calculation of p,'' {\em Journal of the Royal Statistical Society}, vol.~85,
+  no.~1, pp.~87--94, 1922.
+
+\bibitem{test:comparison}
+I.~Campbell, ``Chi-squared and fisher--irwin tests of two-by-two tables with
+  small sample recommendations,'' {\em Statistics in medicine}, vol.~26,
+  no.~19, pp.~3661--3675, 2007.
+
+\end{thebibliography}

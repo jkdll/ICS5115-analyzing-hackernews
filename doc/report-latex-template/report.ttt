@@ -1,0 +1,189 @@
+\begin{table}[!ht]
+\centering
+\begin{tabular}{ll}
+\hline
+\multicolumn{2}{l}{Document Term Matrix} \\ \hline
+Documents             & 5,939            \\ \hline
+Terms                 & 7,947            \\ \hline
+Sparsity              & 99\%             \\ \hline
+\\
+\end{tabular}
+\caption{Document Term Matrix for LDA Training}
+\label{tab:dtmatrix}
+\end{table}
+\efloatseparator
+ 
+\begin{table}[!ht]
+\centering
+\tiny
+\begin{tabular}{lll}
+\hline
+\begin{tabular}[c]{@{}l@{}}Topic\\ Id\end{tabular} & Keywords                            & \begin{tabular}[c]{@{}l@{}}Human-Readable\\ Annotation\end{tabular} \\ \hline
+1                                                  & point view channel youtub content   & Youtube                                                             \\ \hline
+2                                                  & flight plane air boe pilot          & Boeing 737 \& Aviation                                              \\ \hline
+3                                                  & countri india germani europ world   & Geopolitics                                                         \\ \hline
+4                                                  & phone devic call android smartphon  & Mobile Devices \& Apps                                              \\ \hline
+5                                                  & life friend mind world advic        & Self Improvement                                                    \\ \hline
+6                                                  & rust webassembl red swift runtim    & Rust Lang.                                                          \\ \hline
+7                                                  & materi glass plastic wast wood      & Environmental Concerns                                              \\ \hline
+8                                                  & earth moon land planet star         & Space Exploration                                                   \\ \hline
+9                                                  & compani fund investor capit founder & VC,IPOs \& Money                                                    \\ \hline
+10                                                 & editor edit guid emac studio        & IDEs                                                                \\ \hline
+11                                                 & money peopl dollar million thousand & Making Money                                                        \\ \hline
+12                                                 & peopl decis lot problem fact        & Quitting Jobs \& Toxic SV Culture                                   \\ \hline
+13                                                 & ’ ’ve lot ’ll note                  & Noisy Topic 1                                                       \\ \hline
+14                                                 & perform intel cpu processor core    & CPUs, Performance \& Advances                                       \\ \hline
+15                                                 & market busi industri compani sale   & Corporate Revenue \& Transactions                                   \\ \hline
+\\
+\end{tabular}
+\caption{Examples of Human-Readable Annotations Assigned to LDA Topics}
+\label{tab:annot-examples}
+\end{table}
+\efloatseparator
+ 
+\begin{table}[!ht]
+\centering
+\tiny
+\begin{tabular}{lll}
+\hline
+Annotation            & Story Headline                                                                                                                                  & Points \\ \hline
+Hiring \& Careers     & \begin{tabular}[c]{@{}l@{}}Absolute truths I unlearned \\  as junior developer (monicalent.com)\end{tabular}                                  & 1478   \\ \hline
+Hiring \& Careers     & \begin{tabular}[c]{@{}l@{}}I interviewed at six top companies \\  in Silicon Valley in six days (blog.usejournal.com)\end{tabular}            & 970    \\ \hline
+Hiring \& Careers     & \begin{tabular}[c]{@{}l@{}}When hiring senior engineers, you’re not buying, \\  you’re selling (hiringengineersbook.com)\end{tabular}         & 941    \\ \hline
+Making Money          & How to Be Successful (blog.samaltman.com)                                                                                                       & 836    \\ \hline
+Making Money          & \begin{tabular}[c]{@{}l@{}}Firefox desktop market share \\  now below 9\% (netmarketshare.com)\end{tabular}                                   & 821    \\ \hline
+Making Money          & \begin{tabular}[c]{@{}l@{}}Open Source Doesn’t Make Money Because \\  It Isn’t Designed to Make Money (www.ianbicking.org)\end{tabular}       & 716    \\ \hline
+Web Protocols \& APIs & \begin{tabular}[c]{@{}l@{}}Remote Code Execution on \\  Most Dell Computers (d4stiny.github.io)\end{tabular}                                  & 870    \\ \hline
+Web Protocols \& APIs & HTTP headers for the responsible developer (www.twilio.com)                                                                                     & 866    \\ \hline
+Web Protocols \& APIs & HTTP/3 explained (http3-explained.haxx.se)                                                                                                      & 708    \\ \hline
+Wikileaks \& Law      & Julian Assange arrested in London (www.bbc.co.uk)                                                                                               & 2354   \\ \hline
+Wikileaks \& Law      & \begin{tabular}[c]{@{}l@{}}U.S. Supreme Court Puts Limits on Police \\  Power to Seize Private Property (www.nytimes.com)\end{tabular}        & 1411   \\ \hline
+Wikileaks \& Law      & \begin{tabular}[c]{@{}l@{}}If Software Is Funded from a Public Source, \\  Its Code Should Be Open Source (www.linuxjournal.com)\end{tabular} & 1131   \\ \hline
+Apple Corp.           & Spotify to Apple: Time to Play Fair (www.timetoplayfair.com)                                                                                    & 1876   \\ \hline
+Apple Corp.           & \begin{tabular}[c]{@{}l@{}}FaceTime bug lets you hear audio of person \\  you are calling before they pick up (9to5mac.com)\end{tabular}      & 1531   \\ \hline
+Apple Corp.           & Apple Sign In (techcrunch.com)                                                                                                                  & 1137   \\ \hline
+\\
+\end{tabular}
+
+\caption{Top stories which form part of the top voted topics}
+\label{tab:topstories}
+\end{table}
+\efloatseparator
+ 
+\begin{table}[!ht]
+\centering
+\scriptsize
+\begin{tabular}{lll}
+\hline
+\begin{tabular}[c]{@{}l@{}}Topic\\ Id\end{tabular} & Topic Annoation                                                                                              & Cluster Name \\ \hline
+11                                                 & Making Money                                                                                                 & Cluster 1    \\ \hline
+15                                                 & Corporate Revenue \& Transactions                                                                            & Cluster 1    \\ \hline
+37                                                 & Corporate Tax                                                                                                & Cluster 1    \\ \hline
+23                                                 & C-Level Execs, Recruitment \& Layoffs                                                                        & Cluster 1    \\ \hline
+3                                                  & Geopolitics                                                                                                  & Cluster 1    \\ \hline
+17                                                 & Lawmaking, Policy \& Trump                                                                                   & Cluster 1    \\ \hline
+43                                                 & Payment Companies \& Investments                                                                             & Cluster 1    \\ \hline
+9                                                  & VC,IPOs \& Money                                                                                             & Cluster 1    \\ \hline
+50                                                 & Government Surveillance                                                                                      & Cluster 1    \\ \hline
+30                                                 & Demographic Statistics                                                                                       & Cluster 1    \\ \hline
+51                                                 & Nosiy Topic G                                                                                                & Cluster 1    \\ \hline
+48                                                 & Housing \& Accom                                                                                             & Cluster 2    \\ \hline
+22                                                 & Japanese Tech.                                                                                               & Cluster 2    \\ \hline
+35                                                 & Problems \& The Past & Cluster 2    \\ \hline
+21                                                 & Noisy Topic B                                                                                                & Cluster 2    \\ \hline
+20                                                 & Movies \& Entertainment                                                                                      & Cluster 2    \\ \hline
+12                                                 & Quitting Jobs \& Toxic SV Culture                                                                            & Cluster 2    \\ \hline
+27                                                 & Terrorism \& General Crime                                                                                   & Cluster 2    \\ \hline
+47                                                 & Math, Simulations \& Trading                                                                                 & Cluster 3    \\ \hline
+53                                                 & Functional Lagnuages                                                                                         & Cluster 3    \\ \hline
+44                                                 & Noisy Topic E                                                                                                & Cluster 3    \\ \hline
+6                                                  & Rust Lang.                                                                                                   & Cluster 3    \\ \hline
+31                                                 & Noisy Topic C                                                                                                & Cluster 3    \\ \hline
+40                                                 & Ruby Lang.                                                                                                   & Cluster 3    \\ \hline
+33                                                 & Interpreted Prog. Languages                                                                                  & Cluster 3    \\ \hline
+57                                                 & Concurrency \& Parallel Programming                                                                          & Cluster 3    \\ \hline
+26                                                 & Fast \& Efficient Porgramming                                                                                & Cluster 3    \\ \hline
+77                                                 & Nature, Animals \& Insects                                                                                   & Cluster 4    \\ \hline
+113                                                & Family Issues \& Happiness                                                                                   & Cluster 4    \\ \hline
+94                                                 & Chess \& Games \& Board Games                                                                                & Cluster 4    \\ \hline
+85                                                 & Noisy Topic K                                                                                                & Cluster 4    \\ \hline
+110                                                & Noisy Topic Q                                                                                                & Cluster 5    \\ \hline
+89                                                 & Huawei \& China                                                                                              & Cluster 5    \\ \hline
+58                                                 & Wikileaks \& Law                                                                                             & Cluster 5    \\ \hline
+71                                                 & Corp. Lawsuits                                                                                               & Cluster 5    \\ \hline
+\\
+\end{tabular}
+\caption{Clusters Extracted from Covariance Matrix}
+\label{tab:clusters}
+\end{table}
+\efloatseparator
+ 
+\begin{table}[!ht]
+\centering
+\scriptsize
+\begin{tabular}{llllll}
+\hline
+               & Df    & Sum Sq & Mean Sq & F value & Pr(\textgreater{}F) \\ \hline
+Topic          & 113   & 16588  & 146.80  & 1.996   & 2.97e-09            \\ \hline
+Residuals      & 5825  & 428417 & 73.55   &         &                     \\ \hline
+Signifc. codes & 0.001 & 0.01   & 0.05    & 0.1     & 1                   \\ \hline
+\\
+\end{tabular}
+\caption{One-Way Anova Test between Topics (Categorical) and Rank (Nominal)}
+\label{tab:anova}
+\end{table}
+\efloatseparator
+ 
+\begin{table}[!ht]
+\centering
+\tiny
+\begin{tabular}{lll}
+\hline
+Topic                                                                  & Story                                                                                                                                                    & Points \\ \hline
+\begin{tabular}[c]{@{}l@{}}Theoretical \\ Physics\end{tabular}         & \begin{tabular}[c]{@{}l@{}}Unveiling the first-ever image of a\\  black hole {[}video{]} \\ (www.youtube.com)\end{tabular}                               & 2150   \\ \hline
+Academia                                                               & \begin{tabular}[c]{@{}l@{}}UC terminates subscriptions with \\ Elsevier in push for open access \\ (www.universityofcalifornia.edu)\end{tabular}         & 1706   \\ \hline
+BizDev                                                                 & \begin{tabular}[c]{@{}l@{}}Start with a Website, Not a Mobile App\\  (www.atrium.co)\end{tabular}                                                        & 1536   \\ \hline
+\begin{tabular}[c]{@{}l@{}}Journo, Media \\ \& Ads\end{tabular}        & \begin{tabular}[c]{@{}l@{}}No Thank You, Mr. Pecker \\ (medium.com)\end{tabular}                                                                         & 2400   \\ \hline
+\begin{tabular}[c]{@{}l@{}}Journo, Media \\ \& Ads\end{tabular}        & \begin{tabular}[c]{@{}l@{}}Bezos Investigation Says the Saudis \\ Obtained His Private Data \\ (www.thedailybeast.com)\end{tabular}                      & 602    \\ \hline
+\begin{tabular}[c]{@{}l@{}}Containers, \\ Orch \& Cloud\end{tabular}   & \begin{tabular}[c]{@{}l@{}}Please do not attempt to \\ simplify this code \\ (github.com)\end{tabular}                                                   & 1483   \\ \hline
+\begin{tabular}[c]{@{}l@{}}Malicious Company \\ Behaviour\end{tabular} & \begin{tabular}[c]{@{}l@{}}Google Tried to Patent My Work \\ After a Job Interview\\ (patentpandas.org)\end{tabular}                                     & 1757   \\ \hline
+\begin{tabular}[c]{@{}l@{}}Malicious Company \\ Behaviour\end{tabular} & \begin{tabular}[c]{@{}l@{}}Apps intended for kids may  \\ not include third-party advertising\\ or analytics \\ (developer.apple.com)\end{tabular} & 1171   \\ \hline
+Noisy Topic R                                                          & \begin{tabular}[c]{@{}l@{}}I made a smart watch from scratch \\ (m.imgur.com)\end{tabular}                                                               & 1431   \\ \hline
+\begin{tabular}[c]{@{}l@{}}Wikileaks \\ \& Law\end{tabular}            & \begin{tabular}[c]{@{}l@{}}Julian Assange arrested in London \\ (www.bbc.co.uk)\end{tabular}                                                             & 2354   \\ \hline
+\begin{tabular}[c]{@{}l@{}}Wikileaks \\ \& Law\end{tabular}            & \begin{tabular}[c]{@{}l@{}}U.S. Supreme Court Puts Limits on \\ Police Power to Seize Private Property \\ (www.nytimes.com)\end{tabular}                 & 1411   \\ \hline
+\begin{tabular}[c]{@{}l@{}}Wikileaks \\ \& Law\end{tabular}            & \begin{tabular}[c]{@{}l@{}}Justice Department Is Preparing Antitrust \\ Investigation of Google (www.wsj.com)\end{tabular}                               & 867    \\ \hline
+\begin{tabular}[c]{@{}l@{}}Web Browsers \\ \& Plugins\end{tabular}     & \begin{tabular}[c]{@{}l@{}}Switch from Chrome to Firefox \\ (www.mozilla.org)\end{tabular}                                                               & 3246   \\ \hline
+\begin{tabular}[c]{@{}l@{}}Web Browsers \\ \& Plugins\end{tabular}     & \begin{tabular}[c]{@{}l@{}}A Conspiracy to Kill IE6 \\ (blog.chriszacharias.com)\end{tabular}                                                            & 2141   \\ \hline
+\begin{tabular}[c]{@{}l@{}}Web Browsers \\ \& Plugins\end{tabular}     & \begin{tabular}[c]{@{}l@{}}Google to restrict modern ad blocking \\ Chrome extensions to enterprise users \\ (9to5google.com)\end{tabular}               & 2057   \\ \hline
+Self Improvement                                                       & \begin{tabular}[c]{@{}l@{}}Ask HN: What books changed the way \\ you think about almost everything?\end{tabular}                                         & 1905   \\ \hline
+Self Improvement                                                       & \begin{tabular}[c]{@{}l@{}}A guide to difficult conversations \\ (medium.dave-bailey.com)\end{tabular}                                                   & 1782   \\ \hline
+Self Improvement                                                       & \begin{tabular}[c]{@{}l@{}}Why isn't the internet \\ more fun and weird? \\ (jarredsumner.com)\end{tabular}                                              & 1495   \\ \hline
+\\
+\end{tabular}
+\caption{Top Ten Topics in the Top Post by Median Points}
+\label{toprank:toptopics}
+\end{table}
+\efloatseparator
+ 
+\begin{table}[!ht]
+\centering
+\begin{tabular}{lll}
+\hline
+Topic                                                                            & Frequency & Probability \\ \hline
+\begin{tabular}[c]{@{}l@{}}Web Browsers \\ \& Plugins\end{tabular}               & 13        & 0.0660      \\ \hline
+\begin{tabular}[c]{@{}l@{}}Tool UI, Automation \\ \& Devops\end{tabular}         & 8         & 0.0406      \\ \hline
+Github \& New OSS                                                                & 7         & 0.0355      \\ \hline
+Hiring \& Careers                                                                & 6         & 0.0305      \\ \hline
+Math \& CS                                                                       & 6         & 0.0305      \\ \hline
+Noisy Topic D                                                                    & 6         & 0.0305      \\ \hline
+Self Improvement                                                                 & 6         & 0.0305      \\ \hline
+\begin{tabular}[c]{@{}l@{}}Software Usability \\ \& User Interfaces\end{tabular} & 6         & 0.0305      \\ \hline
+Apple Corp.                                                                      & 5         & 0.0254      \\ \hline
+\begin{tabular}[c]{@{}l@{}}Facebook Privacy \\ Concerns\end{tabular}             & 5         & 0.0254      \\ \hline
+\\
+\end{tabular}
+\caption{Top five Topics within the Top Rank by Probability}
+\label{tab:tab_toprank}
+\end{table}
+\efloatseparator
+ 

@@ -1,0 +1,36 @@
+This is the document matrix used to trian the topic model:
+	> document_matrix_st
+	<<DocumentTermMatrix (documents: 5939, terms: 7947)>>
+	Non-/sparse entries: 439282/46757951
+	Sparsity           : 99%
+	Maximal term length: 18
+	Weighting          : term frequency (tf)
+
+These are the detected clusters:
+	Cluster 1: 
+		17,50,3,51,11,43,30,37,23,9,15
+	Cluster 2:
+		12,21,48,22,20,27,35
+	Cluster 3:
+		6,33,53,40,57,47,44,26,31
+	Cluster 4:
+		84,100,86,87,103,96,105
+	Cluster 5:
+		77,94,85,113
+	Cluster 6:
+		89,110,58,71
+
+#### Output:
+Pearson's Chi-squared test
+
+data:  chi_tbl
+X-squared = 159.48, df = 113, p-value = 0.002634
+
+Warning message:
+In chisq.test(chi_tbl) : Chi-squared approximation may be incorrect
+"
+# p < 0.05 Therefore we reject the null hypothesis
+# We observe that due to very low counts, thus the calculation may be unreliable
+# We consider using logistic regression, but we conclude that this will serve no benefit because we have 2 categorical values
+# This is the best we can do with the data available
+##################################################################

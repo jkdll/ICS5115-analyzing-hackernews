@@ -1,0 +1,91 @@
+\begin{figure}[!ht]
+\centerline{\includegraphics[scale=0.4]{img/descriptive_01_sources_bin.png}}
+\caption{Stories plotted by Comments and Points within density bins}
+\label{fig1}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[!ht]
+\centerline{\includegraphics[scale=0.4]{img/descriptive_02_sources_rank.png}}
+\caption{Stories plotted by Comments and Points grouped by Ranking}
+\label{fig2}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[!ht]
+\centerline{\includegraphics[scale=0.4]{img/descriptive_03_var_density.png}}
+\caption{Density plot for points and comments}
+\label{fig3}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[!ht]
+\centerline{\includegraphics[scale=0.4]{img/descriptive_04_source_sum.png}}
+\caption{Source Domains plotted by Sum of Comments and Points}
+\label{fig4}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[!ht]
+\centerline{\includegraphics[scale=0.4]{img/descriptive_05_source_med.png}}
+\caption{Source Domains plotted by Median of Comments and Points}
+\label{fig5}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[!ht]
+\centerline{\includegraphics[scale=0.4]{img/descriptive_06_dayofweek.png}}
+\caption{Heatmap of the median number of HN points by Month and Day of the Week}
+\label{fig6}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[!ht]
+\centerline{\includegraphics[scale=0.4]{img/descriptive_07_pointsbyhour.png}}
+\caption{Points by Hour}
+\label{fig7}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[!ht]
+\centerline{\includegraphics[scale=0.4]{img/topic_model_01_idealk.png}}
+\caption{K Selection Process}
+\label{fig7}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[!ht]
+\centerline{\includegraphics[scale=0.4]{img/topic_model_02_alltopics.png}}
+\caption{Detected Topics by Comments and Points}
+\label{fig7}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[!ht]
+\centerline{\includegraphics[scale=0.3]{img/topic_model_03_allarticles_full_SMALL.png}}
+\caption{Covariance Matrix of Topics}
+\label{covar}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[!ht]
+\centerline{\includegraphics[scale=0.4]{img/topic_model_02_plot_clusters.png}}
+\caption{Top Clustered Topics appearing on the Front Page}
+\label{covar}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[!ht]
+\centerline{\includegraphics[scale=0.4]{img/topic_model_02_top_post_ranking_med.png}}
+\caption{Top Topics by Median Points}
+\label{toptopicsmedpoints}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[!ht]
+\centerline{\includegraphics[scale=0.4]{img/topic_model_02_toprank_freqtabviz.png}}
+\caption{Topic Occurance in Top Post}
+\label{freqviz_toprank}
+\end{figure}
+\efloatseparator
+ 
